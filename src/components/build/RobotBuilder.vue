@@ -1,5 +1,5 @@
-<template src="./RobotBuilder.html"></template>
-<style src="./RobotBuilder.css"></style>
+<template src='./RobotBuilder.html'></template>
+<style lang="scss" scoped src='./RobotBuilder.scss'></style>
 
 <script>
 import availableParts from '../../data/parts';
@@ -20,12 +20,27 @@ export default {
     return {
       availableParts,
       selectedHeadIndex: 0,
+      cart: [],
     };
   },
   computed: {
+    saleBorderClass() {
+      return this.selectedRobot.head.onSale ? 'sale-border' : '';
+    },
+    headBorderStyle() {
+      return {
+        border: this.selectedRobot.head.onSale
+          ? '3px solid red'
+          : '3px solid #aaa',
+      };
+    },
     selectedRobot() {
       return {
         head: availableParts.heads[this.selectedHeadIndex],
+        leftArm: availableParts.arms[this.selectedHeadIndex],
+        rightArm: availableParts.arms[this.selectedHeadIndex],
+        torso: availableParts.torsos[this.selectedHeadIndex],
+        bases: availableParts.bases[this.selectedHeadIndex],
       };
     },
   },
@@ -41,6 +56,15 @@ export default {
         this.selectedHeadIndex,
         availableParts.heads.length,
       );
+    },
+    addToCart() {
+      const robot = this.selectedRobot;
+      const cost = robot.head.cost
+        + robot.leftArm.cost
+        + robot.torso
+        + robot.rightArm
+        + robot.bases;
+      this.cart.push(Object.assign({}, robot, { cost }));
     },
   },
 };
