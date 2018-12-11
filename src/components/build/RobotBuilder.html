@@ -1,0 +1,34 @@
+<div>
+  <div class="top-row">
+    <div class="top part">
+      <div class="robot-name"></div>
+      <img v-bind:src="selectedRobot.head.src" title="head">
+      <button v-on:click="selectPreviousHead()" class="prev-selector">&#9668;</button>
+      <button v-on:click="selectNextHead()" class="next-selector">&#9658;</button>
+    </div>
+  </div>
+  <div class="middle-row">
+    <div class="left part">
+      <img v-bind:src="availableParts.arms[0].src" title="left arm">
+      <button class="prev-selector">&#9650;</button>
+      <button class="next-selector">&#9660;</button>
+    </div>
+    <div class="center part">
+      <img v-bind:src="availableParts.torsos[0].src" title="left arm">
+      <button class="prev-selector">&#9668;</button>
+      <button class="next-selector">&#9658;</button>
+    </div>
+    <div class="right part">
+      <img v-bind:src="availableParts.arms[0].src" title="left arm">
+      <button class="prev-selector">&#9650;</button>
+      <button class="next-selector">&#9660;</button>
+    </div>
+  </div>
+  <div class="bottom-row">
+    <div class="bottom part">
+      <img v-bind:src="availableParts.bases[0].src" title="left arm">
+      <button class="prev-selector">&#9668;</button>
+      <button class="next-selector">&#9658;</button>
+    </div>
+  </div>
+</div>
