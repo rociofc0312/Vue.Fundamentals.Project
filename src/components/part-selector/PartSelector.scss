@@ -3,26 +3,28 @@
     width:165px;
     height:165px;
     border: 3px solid #aaa;
-  } 
-  .part {
-    img {
-      width:165px;
-    }
   }
-  .top-row {
-    display:flex;
-    justify-content: space-around;
+  .sale {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: white;
+    background-color: red;
+    padding: 3px;
   }
-  .middle-row {
-    display:flex;
-    justify-content: center;
+  .part-title {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    color: red;
+    padding-top: 5px;
+    top: -25px;
   }
-  .bottom-row {
-    display:flex;
-    justify-content: space-around;
-    border-top: none;
+  .part img {
+    width:165px;
   }
-  .head {
+  .top {
     border-bottom: none;
   }
   .left {
@@ -31,14 +33,14 @@
   .right {
     border-left: none;
   }
+  .bottom {
+    border-top: none;
+  }
   .left img {
     transform: rotate(-90deg);
   }
   .right img {
     transform: rotate(90deg);
-  }
-  .bottom {
-    border-top: none;
   }
   .prev-selector {
     position: absolute;
@@ -56,6 +58,18 @@
     width: 25px;
     height: 171px;
   }
+  .left .prev-selector:after,  .right .prev-selector:after{
+    content: '\25B2'
+  }
+  .left .next-selector:after, .right .next-selector:after {
+    content: '\25BC'
+  }
+  .top .prev-selector:after, .bottom .prev-selector:after, .center .prev-selector:after{
+    content: '\25C4'
+  }
+  .top .next-selector:after, .bottom .next-selector:after, .center .next-selector:after{
+    content: '\25BA'
+  }
   .center .prev-selector, .center .next-selector {
     opacity:0.8;
   }
@@ -68,52 +82,23 @@
   .left .next-selector {
     top: auto;
     bottom: -28px;
-    left: -3px;    
+    left: -3px;
     width: 144px;
     height: 25px;
   }
   .right .prev-selector {
     top: -28px;
-    left: 24px;  
+    left: 24px;
     width: 144px;
     height: 25px;
   }
   .right .next-selector {
     top: auto;
     bottom: -28px;
-    left: 24px;    
+    left: 24px;
     width: 144px;
     height: 25px;
   }
-  .right .next-selector {
-    right: -3px;
-  }
-  .robot-name {
-    position: absolute;
-    top: -25px;
-    text-align: center;
-    width: 100%;
-  }
-  .sale{
-    color: red;
-  }
-  .conteny{
-    position: relative;
-  }
-  .add-to-cart{
-    position: absolute;
-    width: 220px;
-    padding: 3px;
-    font-size: 16px;
-  }
-  td, th{
-    text-align: left;
-    padding: 5px;
-    padding-right: 20px;
-  }
-  .cost{
-    text-align: right;
-  }
-  .sale-border {
-    border: 3px solid red;
+  .highlight {
+    border: 1px solid red;
   }

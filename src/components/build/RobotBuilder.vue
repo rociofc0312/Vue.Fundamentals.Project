@@ -1,26 +1,24 @@
 <template src='./RobotBuilder.html'></template>
-<style lang="scss" scoped src='./RobotBuilder.scss'></style>
+<style lang='scss' scoped src='./RobotBuilder.scss'></style>
 
 <script>
 import availableParts from '../../data/parts';
-
-function getPreviousValidIndex(index, lenght) {
-  const deprecatedIndex = index - 1;
-  return deprecatedIndex < 0 ? lenght - 1 : deprecatedIndex;
-}
-
-function getNextValidIndex(index, lenght) {
-  const incrementedIndex = index + 1;
-  return incrementedIndex > lenght - 1 ? 0 : incrementedIndex;
-}
+import PartSelector from '../part-selector/PartSelector.vue';
 
 export default {
   name: 'RobotBuilder',
+  components: { PartSelector },
   data() {
     return {
       availableParts,
-      selectedHeadIndex: 0,
       cart: [],
+      selectedRobot: {
+        head: {},
+        leftArm: {},
+        rightArm: {},
+        torso: {},
+        bases: {},
+      },
     };
   },
   computed: {
@@ -34,36 +32,15 @@ export default {
           : '3px solid #aaa',
       };
     },
-    selectedRobot() {
-      return {
-        head: availableParts.heads[this.selectedHeadIndex],
-        leftArm: availableParts.arms[this.selectedHeadIndex],
-        rightArm: availableParts.arms[this.selectedHeadIndex],
-        torso: availableParts.torsos[this.selectedHeadIndex],
-        bases: availableParts.bases[this.selectedHeadIndex],
-      };
-    },
   },
   methods: {
-    selectNextHead() {
-      this.selectedHeadIndex = getNextValidIndex(
-        this.selectedHeadIndex,
-        availableParts.heads.length,
-      );
-    },
-    selectPreviousHead() {
-      this.selectedHeadIndex = getPreviousValidIndex(
-        this.selectedHeadIndex,
-        availableParts.heads.length,
-      );
-    },
     addToCart() {
       const robot = this.selectedRobot;
       const cost = robot.head.cost
-        + robot.leftArm.cost
-        + robot.torso
-        + robot.rightArm
-        + robot.bases;
+      + robot.leftArm.cost
+      + robot.torso.cost
+      + robot.rightArm.cost
+      + robot.bases.cost;
       this.cart.push(Object.assign({}, robot, { cost }));
     },
   },
