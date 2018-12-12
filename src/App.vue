@@ -4,32 +4,33 @@
       <nav>
         <ul>
           <li class="nav-item">
-            <img src="./assets/general-images/build-a-bot-logo.png" alt="" class="logo">
-            Build a Bot
+            <router-link :to="{name: 'Home'}" class="nav-link" exact>
+              <img src="./assets/general-images/build-a-bot-logo.png" alt class="logo">
+              Build a Bot
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link :to="{name: 'Build'}" class="nav-link" exact>
+              Build
+            </router-link>
           </li>
         </ul>
       </nav>
     </header>
     <main>
-      <RobotBuilder/>
+      <router-view/>
     </main>
   </div>
 </template>
 
 <script>
-// import HomePage from './components/home/HomePage.vue';
-import RobotBuilder from './components/build/RobotBuilder.vue';
-
 export default {
   name: 'app',
-  components: {
-    RobotBuilder,
-  },
 };
 </script>
 
 <style>
-body{
+body {
   background: linear-gradient(to bottom, #555, #999);
   background-attachment: fixed;
 }
@@ -37,7 +38,7 @@ body{
 
 <style scoped>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
 }
 main {
   margin: 0 auto;
@@ -64,5 +65,12 @@ ul {
 .logo {
   vertical-align: middle;
   height: 30px;
+}
+.nav-link{
+  text-decoration: none;
+  color: inherit;
+}
+.router-link-active{
+  color: white;
 }
 </style>

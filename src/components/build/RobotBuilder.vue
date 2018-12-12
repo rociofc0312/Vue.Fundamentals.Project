@@ -4,10 +4,11 @@
 <script>
 import availableParts from '../../data/parts';
 import PartSelector from '../part-selector/PartSelector.vue';
+import CollapsibleSection from '../shared/CollapsibleSection.vue';
 
 export default {
   name: 'RobotBuilder',
-  components: { PartSelector },
+  components: { PartSelector, CollapsibleSection },
   data() {
     return {
       availableParts,

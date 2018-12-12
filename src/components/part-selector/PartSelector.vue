@@ -35,7 +35,19 @@ export default {
   created() {
     this.emitSelectedPart();
   },
+  updated() {
+    this.emitSelectedPart();
+  },
   methods: {
+    showPartInfo() {
+      this.$router.push({
+        name: 'Parts',
+        params: {
+          id: this.selectedPart.id,
+          partType: this.selectedPart.type,
+        },
+      });
+    },
     emitSelectedPart() {
       this.$emit('partSelected', this.selectedPart);
     },
@@ -44,14 +56,12 @@ export default {
         this.selectedPartIndex,
         this.parts.length,
       );
-      this.emitSelectedPart();
     },
     selectPreviousPart() {
       this.selectedPartIndex = getPreviousValidIndex(
         this.selectedPartIndex,
         this.parts.length,
       );
-      this.emitSelectedPart();
     },
   },
 };
