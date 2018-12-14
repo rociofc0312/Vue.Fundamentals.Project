@@ -2,12 +2,14 @@
 <style lang='scss' scoped src='./RobotBuilder.scss'></style>
 
 <script>
-import availableParts from '../../data/parts';
 import PartSelector from '../part-selector/PartSelector.vue';
 import CollapsibleSection from '../shared/CollapsibleSection.vue';
 
 export default {
   name: 'RobotBuilder',
+  created() {
+    this.$store.dispatch('robots/getParts');
+  },
   beforeRouteLeave(to, from, next) {
     if (this.addedToCart) {
       next(true);
@@ -21,7 +23,6 @@ export default {
   components: { PartSelector, CollapsibleSection },
   data() {
     return {
-      availableParts,
       addedToCart: false,
       cart: [],
       selectedRobot: {
@@ -44,6 +45,9 @@ export default {
           : '3px solid #aaa',
       };
     },
+    availableParts() {
+      return this.$store.state.robots.parts;
+    },
   },
   methods: {
     addToCart() {
@@ -53,9 +57,11 @@ export default {
       + robot.torso.cost
       + robot.rightArm.cost
       + robot.bases.cost;
-      this.$store.commit('addRobotToCart', Object.assign({}, robot, { cost }));
+      this.$store.dispatch('robots/addRobotToCart', Object.assign({}, robot, { cost }))
+        .then(() => this.$router.push('/cart'));
       this.addedToCart = true;
     },
   },
 };
+// You commit a mutation and dispatch an action
 </script>

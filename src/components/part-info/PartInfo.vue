@@ -2,10 +2,11 @@
 <style lang='scss' scoped src='./PartInfo.scss'></style>
 
 <script>
-import parts from '../../data/parts';
+import getPartsMixin from '../parts/get-parts-minxin';
 
 export default {
   name: 'PartInfo',
+  mixins: [getPartsMixin],
   props: {
     partType: { type: String },
     id: {
@@ -18,7 +19,7 @@ export default {
   computed: {
     part() {
       const { partType, id } = this;
-      return parts[partType].find(part => part.id === +id);
+      return this.parts[partType].find(part => part.id === +id);
     },
   },
 };

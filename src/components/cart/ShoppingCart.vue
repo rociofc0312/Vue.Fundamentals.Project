@@ -6,7 +6,10 @@ export default {
   name: 'Cart',
   computed: {
     cart() {
-      return this.$store.state.cart;
+      return this.$store.state.robots.cart;
+    },
+    cartSaleItems() {
+      return this.$store.getters['robots/cartSaleItems'];
     },
   },
 };
