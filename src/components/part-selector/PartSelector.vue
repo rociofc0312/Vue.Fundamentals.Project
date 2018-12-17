@@ -25,7 +25,10 @@ export default {
     },
   },
   data() {
-    return { selectedPartIndex: 0 };
+    return {
+      selectedPartIndex: 0,
+      pinPadding: '10px',
+    };
   },
   computed: {
     selectedPart() {
